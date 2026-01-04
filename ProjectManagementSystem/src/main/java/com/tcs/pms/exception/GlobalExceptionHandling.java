@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandling {
 	
 	@ExceptionHandler
-	public ResponseEntity<Map> RunTimeExceptionHandler(RuntimeException e){
+	public ResponseEntity<Map<String,String>> RunTimeExceptionHandler(RuntimeException e){
 		Map<String,String> m=new HashMap<>();
 		m.put("errorCode", "101");
 		m.put("errorMessage", e.getMessage());

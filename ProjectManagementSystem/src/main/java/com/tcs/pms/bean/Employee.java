@@ -2,13 +2,15 @@ package com.tcs.pms.bean;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -68,15 +70,9 @@ public class Employee {
 	@Length(min=5,message="Provide proper details of employee")
 	private String details;
 	
-	@Column
-	private String projectId;
-
-	public String getProjectId() {
-		return projectId;
-	}
-
-	public void setProjectId(String projectId) {
-		this.projectId = projectId;
-	}
+	@ManyToOne
+	@JoinColumn(name="project_id")
+	@JsonManagedReference
+	private Project project;
 
 }

@@ -1,16 +1,17 @@
 package com.tcs.pms.bean;
 
 import java.util.List;
-import java.util.jar.Attributes.Name;
+
 
 import org.hibernate.validator.constraints.Length;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
@@ -98,8 +99,8 @@ public class Project {
 	private String countryCode;
 	
 
-	@OneToMany
-	@JoinColumn(name="projectId")
+	@OneToMany(mappedBy = "project",cascade = CascadeType.ALL)
+	@JsonBackReference
 	private List<Employee> Employees;
 	
 
