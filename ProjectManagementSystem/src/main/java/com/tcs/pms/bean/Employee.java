@@ -69,10 +69,18 @@ public class Employee {
 	@Column
 	@Length(min=5,message="Provide proper details of employee")
 	private String details;
+
+	@Column
+	private String username;
+
+	@Column
+	private String password;
 	
 	@ManyToOne
 	@JoinColumn(name="project_id")
 	@JsonManagedReference
 	private Project project;
+
+	
 
 }
